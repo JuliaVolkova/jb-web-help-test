@@ -1,0 +1,43 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "targets": {
+          "browsers": [
+            "last 2 versions"
+          ]
+        },
+        "modules": false,
+        "useBuiltIns": "usage"
+      }
+    ],
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    "syntax-dynamic-import",
+    "transform-class-properties",
+    "transform-regenerator",
+    ["transform-object-rest-spread", {"useBuiltIns": true}]
+  ],
+  "compact": true,
+  "env": {
+    "production": {
+      "presets": ["minify"],
+      "plugins": [
+        "array-includes",
+        "transform-object-assign",
+        "transform-react-remove-prop-types",
+        "transform-imports",
+        "transform-react-inline-elements",
+        "transform-react-constant-element"
+
+      ]
+    },
+    "development": {
+      "plugins": [
+        "react-hot-loader/babel"
+      ]
+    }
+  }
+}
