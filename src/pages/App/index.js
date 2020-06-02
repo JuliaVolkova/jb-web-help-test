@@ -1,5 +1,9 @@
 import {hot} from 'react-hot-loader';
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
+import Header from "components/Header";
+import TableOfContentContainer from "containers/TableOfContentContainer";
+
+import 'static/index.sass';
 
 class App extends Component {
     constructor(props) {
@@ -12,7 +16,10 @@ class App extends Component {
     }
 
     render() {
-        return <div>Hello!</div>
+        return <Fragment>
+            <Header/>
+            <TableOfContentContainer/>
+        </Fragment>
     }
 }
 
