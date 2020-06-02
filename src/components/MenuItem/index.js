@@ -26,7 +26,7 @@ const MenuItem = ({
                 width={8}
                 height={8}
                 alt={'arrow icon'}
-                className={b('link_icon')}/>
+                className={b('link_icon', {state: open.includes(pageId) ? 'open' : 'closed'})}/>
             <a className={b('link')}>
                 {text}
             </a>
