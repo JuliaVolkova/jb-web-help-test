@@ -78,7 +78,7 @@ module.exports = merge(common, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                BASE_URL: JSON.stringify('')
+                BASE_URL: JSON.stringify('https://www.jetbrains.com')
             }
         }),
         new HtmlWebpackPlugin({

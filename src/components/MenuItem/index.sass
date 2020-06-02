@@ -1,10 +1,27 @@
 @use 'static/variables'
 
 .MenuItem
-  padding: 12px 0
+  padding: 12px 0 12px 24px
   list-style: none
 
-  .MenuItem__link
+  &:hover
+    background-color: #F0F0F0
+
+  &_level_second
+    padding: 8px 24px
+
+  &__link
     font-family: variables.$font-stack
     color: variables.$secondary-color
     font-size: variables.$primary-font-size
+    text-decoration: none
+
+  &__link_level_second:hover
+    text-decoration: underline
+    cursor: pointer
+
+  &__link_icon
+    margin-right: 8px
+
+  &__subelements_list
+    margin: 8px 0

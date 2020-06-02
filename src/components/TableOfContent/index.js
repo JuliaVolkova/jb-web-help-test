@@ -5,16 +5,47 @@ import './index.sass';
 
 const b = bemcl('TableOfContent');
 
+const ITEM_LEVEL = {
+    top: 0,
+    second: 1,
+    third: 2,
+    forth: 3,
+    fifth: 4
+}
+
 class TableOfContent extends Component {
+    state = {
+        open: []
+    }
+
     componentDidMount() {
         this.props.getData();
     }
 
+    onElementClick = (itemId) => {
+        if (this.state.open.includes(itemId)) {
+            this.setState({open: this.state.open.filter((item) => item !== itemId)})
+        } else {
+            this.setState({open: [...this.state.open, itemId]});
+        }
+    }
+
     render() {
+        const {topLevelContent = [], allPages} = this.props;
         return (
             <nav className={b()}>
                 <ul>
-                    {['first', 'second', 'third'].map((item) => <MenuItem key={item} text={item}/>)}
+                    {topLevelContent.map((item) =>
+                        <MenuItem
+                            onElementClick={this.onElementClick}
+                            pageId={item.id}
+                            key={item.id}
+                            level={item.level}
+                            text={item.title}
+                            pages={item.pages}
+                            allPages={allPages}
+                            open={this.state.open}
+                        />)}
                 </ul>
             </nav>
         )

@@ -14,6 +14,19 @@ module.exports = merge(common, {
         publicPath: '/'
     },
     devServer: {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, PATCH, OPTIONS'
+        },
+        host: 'localhost',
+        port: 8081,
+        proxy: {
+            '/api': {
+                target: 'https://www.jetbrains.com/help/idea/2018.3/',
+                pathRewrite: {'/api': ''},
+                changeOrigin: true,
+            }
+        },
         historyApiFallback: true
     },
     devtool: 'inline-source-map',
@@ -56,7 +69,8 @@ module.exports = merge(common, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                BASE_URL: JSON.stringify('')
+                // BASE_URL: JSON.stringify('https://www.jetbrains.com')
+                BASE_URL: JSON.stringify('http://localhost:8081')
             }
         }),
         new HtmlWebpackPlugin({
