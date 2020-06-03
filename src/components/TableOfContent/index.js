@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import MenuItem from "components/MenuItem";
+import Skeleton from "components/Skeleton";
 import bemcl from 'bem-cl';
 import './index.sass';
 
@@ -31,22 +32,24 @@ class TableOfContent extends Component {
     }
 
     render() {
-        const {topLevelContent = [], allPages} = this.props;
+        const {topLevelContent = [], allPages, isLoading} = this.props;
         return (
             <nav className={b()}>
-                <ul>
-                    {topLevelContent.map((item) =>
-                        <MenuItem
-                            onElementClick={this.onElementClick}
-                            pageId={item.id}
-                            key={item.id}
-                            level={item.level}
-                            text={item.title}
-                            pages={item.pages}
-                            allPages={allPages}
-                            open={this.state.open}
-                        />)}
-                </ul>
+                {isLoading
+                    ? <Skeleton count={5}/>
+                    : <ul>
+                        {topLevelContent.map((item) =>
+                            <MenuItem
+                                onElementClick={this.onElementClick}
+                                pageId={item.id}
+                                key={item.id}
+                                level={item.level}
+                                text={item.title}
+                                pages={item.pages}
+                                allPages={allPages}
+                                open={this.state.open}
+                            />)}
+                    </ul>}
             </nav>
         )
     }

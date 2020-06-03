@@ -21,12 +21,12 @@ const MenuItem = ({
                   }) => {
     return (
         <li className={b({level})} onClick={() => onElementClick(pageId)}>
-            <img
+            {pages.length > 1 && <img
                 src={arrowIcon}
                 width={8}
                 height={8}
                 alt={'arrow icon'}
-                className={b('link_icon', {state: open.includes(pageId) ? 'open' : 'closed'})}/>
+                className={b('link_icon', {state: open.includes(pageId) ? 'open' : 'closed'})}/>}
             <a className={b('link')}>
                 {text}
             </a>
