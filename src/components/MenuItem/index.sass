@@ -1,31 +1,61 @@
 @use 'static/variables'
 
 .MenuItem
-  padding: 12px 0 12px 24px
+  padding: 12px 0 12px 40px
   list-style: none
+  text-overflow: ellipsis
 
   &:hover
-    background-color: #F0F0F0
+    background-color: variables.$hover
 
-  &_level_second
-    padding: 8px 24px
+  &_level_second,
+  &_level_second:hover,
+  &_level_second:focus
+    padding: 6px 20px 6px 54px
+    background-color: #FAFAFA
+
+  &_level_third,
+  &_level_third:hover,
+  &_level_third:focus
+    padding: 6px 0 6px 68px
+    background-color: #FAFAFA
+
+  &_level_fourth,
+  &_level_fourth:hover,
+  &_level_fourth:focus
+    padding: 6px 0 6px 82px
+    background-color: #FAFAFA
+
+  &_level_fifth,
+  &_level_fifth:hover,
+  &_level_fifth:focus
+    padding: 6px 0 6px 96px
+    background-color: #FAFAFA
 
   &__link
     font-family: variables.$font-stack
     color: variables.$secondary-color
     font-size: variables.$primary-font-size
     text-decoration: none
+    position: relative
 
-  &__link_level_second:hover
+  &__link_type_selected
+    font-weight: 700
+    color: black
+
+  &__link_level_second:hover,
+  &__link_level_third:hover,
+  &__link_level_fourth:hover,
+  &__link_level_fifth:hover
     text-decoration: underline
     cursor: pointer
 
   &__link_icon
     margin-right: 8px
+    position: absolute
+    top: 5px
+    left: -16px
 
     &_state_open
       transform: rotate(180deg)
       transition: .2s
-
-  &__subelements_list
-    margin: 8px 0

@@ -1,6 +1,4 @@
-import React from 'react';
-import {getItemSubElement} from "ducks/tableOfContent";
-import {connect} from "react-redux";
+import React, {Fragment} from 'react';
 
 import bemcl from 'bem-cl';
 import arrowIcon from 'static/images/arrow.svg';
@@ -8,45 +6,43 @@ import './index.sass';
 
 const b = bemcl('MenuItem');
 
-const MenuItem = ({
-                      text = '',
-                      level,
-                      pages = [],
-                      allPages,
-                      onElementClick,
-                      open,
-                      pageId = '',
-                      link = '',
-                      itemSubElement = {},
-                  }) => {
-    return (
-        <li className={b({level})} onClick={() => onElementClick(pageId)}>
-            {pages.length > 1 && <img
-                src={arrowIcon}
-                width={8}
-                height={8}
-                alt={'arrow icon'}
-                className={b('link_icon', {state: open.includes(pageId) ? 'open' : 'closed'})}/>}
-            <a className={b('link')}>
-                {text}
+const ITEM_LEVEL = {
+    0: 'top',
+    1: 'second',
+    2: 'third',
+    3: 'fourth',
+    4: 'fifth'
+}
+
+function hasChildren(node) {
+    return (typeof node === 'object')
+        && (typeof node.pages !== 'undefined');
+}
+
+const renderTree = (item, allPages, callback, open) => {
+    return <Fragment key={item.id}>
+        <li className={b({level: ITEM_LEVEL[item.level]})} onClick={(e) => callback(e, item.id)}>
+            <a className={b('link', {level: ITEM_LEVEL[item.level]})}>
+                {item.pages && item.pages.length > 0 && <img
+                    src={arrowIcon}
+                    width={8}
+                    height={8}
+                    alt={'arrow icon'}
+                    className={b('link_icon', {state: open.includes(item.id) ? 'open' : 'closed'})}
+                />}
+                {item.title}
             </a>
-            {open.includes(pageId) && <ul className={b('subelements_list')}>
-                {pages
-                    ? pages.map((page) =>
-                        <li className={b({level: 'second'})} key={page}>
-                            <a className={b('link', {level: 'second'})}>
-                                {allPages[page].title}
-                            </a>
-                        </li>)
-                    : []
-                }
-            </ul>}
         </li>
-    )
-};
+        {open.includes(item.id) && <Fragment>
+            {hasChildren(item)
+                ? item.pages.map((page) => renderTree(allPages[page], allPages, callback, open))
+                : []}
+        </Fragment>}
+    </Fragment>;
+}
 
-const mapStateToProps = (state, props = {}) => ({
-    itemSubElement: getItemSubElement(state, props)
-});
+const NewMenuItem = ({item, allPages, onElementClick, open}) => {
+    return renderTree(item, allPages, onElementClick, open);
+}
 
-export default connect(mapStateToProps, null)(MenuItem);
+export default NewMenuItem;
