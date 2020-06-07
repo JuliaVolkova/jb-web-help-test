@@ -4,24 +4,31 @@
   &__title,
   &__item_type_long,
   &__item_type_short
-    background-color: #F0F0F0
+    position: relative
+
+    overflow: hidden
+
     width: 200px
     height: 14px
     margin-bottom: 12px
-    overflow: hidden
-    position: relative
+
+    background-color: #f0f0f0
 
   &__title::before,
   &__item::before
-    content: ''
-    display: block
     position: absolute
-    left: -150px
     top: 0
-    height: 14px
+    left: -150px
+
+    display: block
+
     width: 200px
-    background: linear-gradient(90deg,#f2f2f2 37%,#e6e6e6 63%,#f2f2f2 85%)
+    height: 14px
+
+    content: ""
     animation: loading 1.5s infinite
+
+    background: linear-gradient(90deg,#f2f2f2 37%,#e6e6e6 63%,#f2f2f2 85%)
 
   &__title
     margin-left: 24px

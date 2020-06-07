@@ -1,7 +1,7 @@
-import {hot} from 'react-hot-loader';
-import React, {Component, Fragment} from 'react';
-import Header from "components/Header";
-import TableOfContentContainer from "containers/TableOfContentContainer";
+import { hot } from 'react-hot-loader';
+import React, { Component, Fragment } from 'react';
+import Header from 'components/Header';
+import TableOfContentContainer from 'containers/TableOfContentContainer';
 
 import 'static/index.sass';
 
@@ -19,7 +19,7 @@ class App extends Component {
         return <Fragment>
             <Header/>
             <TableOfContentContainer/>
-        </Fragment>
+        </Fragment>;
     }
 }
 

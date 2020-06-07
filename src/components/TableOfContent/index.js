@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
-import MenuItem from "components/MenuItem";
-import Skeleton from "components/Skeleton";
+import React, { Component } from 'react';
+import MenuItem from 'components/MenuItem';
+import Skeleton from 'components/Skeleton';
 import bemcl from 'bem-cl';
 import './index.sass';
 
@@ -19,19 +19,19 @@ class TableOfContent extends Component {
     onElementClick = (e, itemId) => {
         e.stopPropagation();
         if (this.state.open.includes(itemId)) {
-            this.setState({open: this.state.open.filter((item) => item !== itemId)})
+            this.setState({ open: this.state.open.filter((item) => item !== itemId) });
         } else {
-            this.setState({open: [...this.state.open, itemId]});
+            this.setState({ open: [...this.state.open, itemId] });
         }
     }
 
     onElementSelect = (e, itemId) => {
         e.stopPropagation();
-        this.setState({selected: itemId})
+        this.setState({ selected: itemId });
     }
 
     render() {
-        const {topLevelContent = [], allPages, isLoading} = this.props;
+        const { topLevelContent = [], allPages, isLoading } = this.props;
         return (
             <nav className={b()}>
                 {isLoading
@@ -49,7 +49,7 @@ class TableOfContent extends Component {
                             />)}
                     </ul>}
             </nav>
-        )
+        );
     }
 }
 

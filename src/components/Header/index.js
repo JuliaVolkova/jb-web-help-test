@@ -7,6 +7,6 @@ const b = bemcl('Header');
 
 const Header = () => {
     return <header className={b()}/>;
-}
+};
 
 export default Header;

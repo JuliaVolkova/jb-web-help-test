@@ -13,12 +13,12 @@ const Skeleton = ({ count }) => {
             {generatedArray.map((item, i) =>
                 <div key={i}>
                     <div className={b('title')}/>
-                    <div className={b('item', {type: 'long'})}/>
-                    <div className={b('item', {type: 'short'})}/>
-                    <div className={b('item', {type: 'long'})}/>
+                    <div className={b('item', { type: 'long' })}/>
+                    <div className={b('item', { type: 'short' })}/>
+                    <div className={b('item', { type: 'long' })}/>
                 </div>)}
         </div>
-    )
+    );
 };
 
 export default Skeleton;

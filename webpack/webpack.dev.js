@@ -23,8 +23,8 @@ module.exports = merge(common, {
         proxy: {
             '/api': {
                 target: 'https://www.jetbrains.com/help/idea/2018.3/',
-                pathRewrite: {'/api': ''},
-                changeOrigin: true,
+                pathRewrite: { '/api': '' },
+                changeOrigin: true
             }
         },
         historyApiFallback: true
@@ -40,8 +40,8 @@ module.exports = merge(common, {
             {
                 test: /\.s[ac]ss$/i,
                 use: [
-                    {loader: 'style-loader'},
-                    {loader: 'css-loader', options: {sourceMap: true}},
+                    { loader: 'style-loader' },
+                    { loader: 'css-loader', options: { sourceMap: true } },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -53,7 +53,7 @@ module.exports = merge(common, {
                             ]
                         }
                     },
-                    {loader: 'sass-loader'}
+                    { loader: 'sass-loader' }
                 ]
             },
             {

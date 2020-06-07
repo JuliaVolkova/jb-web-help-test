@@ -1,6 +1,6 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -101,7 +101,7 @@ module.exports = merge(common, {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    {loader: 'css-loader'},
+                    { loader: 'css-loader' },
                     {
                         loader: 'postcss-loader',
                         options: {
@@ -111,7 +111,7 @@ module.exports = merge(common, {
                             ]
                         }
                     },
-                    {loader: 'sass-loader'}
+                    { loader: 'sass-loader' }
                 ]
             },
             {

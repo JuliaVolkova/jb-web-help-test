@@ -1,7 +1,7 @@
-import {handleActions} from 'redux-actions';
-import {createAction} from 'redux-actions';
-import {createSelector} from 'reselect';
-import {asyncNameCreator} from 'utils/asyncNameCreator';
+import { handleActions } from 'redux-actions';
+import { createAction } from 'redux-actions';
+import { createSelector } from 'reselect';
+import { asyncNameCreator } from 'utils/asyncNameCreator';
 
 //-----------------------CONSTANTS--------------------------------------------------------
 export const GET_DATA = asyncNameCreator('app/GET_DATA');
@@ -17,7 +17,7 @@ export const getTopLevelContent = createSelector(
     getTopLevelIds,
     getAllPages,
     (topLevelIds, pages) => topLevelIds.map((item) => pages[item])
-)
+);
 
 export const getItemSubElement = (state, props) => getAllPages(state)[props.pageId];
 
@@ -34,7 +34,7 @@ export const getItemSubElement = (state, props) => getAllPages(state)[props.page
 // ----------------------ACTION CREATORS--------------------------------------------------
 export const getData = createAction(GET_DATA.REQUEST);
 export const getDataSuccess = createAction(GET_DATA.SUCCESS);
-export const getDataError = createAction(GET_DATA.FAILURE, (error) => ({error}));
+export const getDataError = createAction(GET_DATA.FAILURE, (error) => ({ error }));
 // ----------------------ACTION CREATORS--------------------------------------------------
 
 //---------------------------REDUCER------------------------------------------------------
@@ -51,7 +51,7 @@ export default handleActions(
             ...state,
             isLoading: true
         }),
-        [GET_DATA.SUCCESS]: (state, {payload}) => ({
+        [GET_DATA.SUCCESS]: (state, { payload }) => ({
             ...state,
             topLevelIds: payload.topLevelIds,
             pages: payload.entities.pages,

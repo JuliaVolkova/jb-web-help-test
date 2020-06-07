@@ -1,6 +1,6 @@
-import {put, call, takeEvery} from 'redux-saga/effects';
-import {GET_DATA, getDataSuccess, getDataError} from './index';
-import {getData} from './api';
+import { put, call, takeEvery } from 'redux-saga/effects';
+import { GET_DATA, getDataSuccess, getDataError } from './index';
+import { getData } from './api';
 
 export function* getDataWorker() {
     try {
