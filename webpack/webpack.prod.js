@@ -78,7 +78,7 @@ module.exports = merge(common, {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                BASE_URL: JSON.stringify('https://www.jetbrains.com')
+                BASE_URL: JSON.stringify('http://localhost:8081')
             }
         }),
         new HtmlWebpackPlugin({
@@ -98,7 +98,7 @@ module.exports = merge(common, {
     module: {
         rules: [
             {
-                test: /\.css$/,
+                test: /\.s[ac]ss$/i,
                 use: [
                     MiniCssExtractPlugin.loader,
                     { loader: 'css-loader' },

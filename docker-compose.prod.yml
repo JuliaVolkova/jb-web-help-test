@@ -1,0 +1,19 @@
+version: '3'
+
+services:
+  web-help:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+    working_dir: /app
+    container_name: web-help
+  proxy:
+    image: nginx
+    ports:
+      - 8081:80
+    volumes:
+      - .docker/reverse-proxy/default.conf:/etc/nginx/conf.d/default.conf
+    container_name: proxy
+    command: [nginx, '-g', 'daemon off;']
+    depends_on:
+      - web-help

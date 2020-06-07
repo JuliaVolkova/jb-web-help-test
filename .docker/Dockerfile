@@ -8,4 +8,4 @@ ENV WORKDIR="/usr/share/nginx/html"
 
 WORKDIR ${WORKDIR}
 COPY --from=builder /app/dist/ .
-COPY ./docker/files/ /
+COPY .docker/files/ /

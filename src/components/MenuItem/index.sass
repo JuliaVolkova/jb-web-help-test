@@ -1,7 +1,7 @@
 @use 'static/variables'
 
 .MenuItem
-  padding: 12px 0 12px 40px
+  padding: 12px 6px 12px 40px
   list-style: none
   text-overflow: ellipsis
 
@@ -17,25 +17,25 @@
   &_level_third,
   &_level_third:hover,
   &_level_third:focus
-    padding: 6px 0 6px 68px
+    padding: 6px 6px 6px 68px
     background-color: #FAFAFA
 
   &_level_fourth,
   &_level_fourth:hover,
   &_level_fourth:focus
-    padding: 6px 0 6px 82px
+    padding: 6px 6px 6px 82px
     background-color: #FAFAFA
 
   &_level_fifth,
   &_level_fifth:hover,
   &_level_fifth:focus
-    padding: 6px 0 6px 96px
+    padding: 6px 6px 6px 96px
     background-color: #FAFAFA
 
   &_level_sixth,
   &_level_sixth:hover,
   &_level_sixth:focus
-    padding: 6px 0 6px 110px
+    padding: 6px 6px 6px 110px
     background-color: #FAFAFA
 
   &__link
@@ -45,9 +45,10 @@
     text-decoration: none
     position: relative
 
-  &__link_type_selected
-    font-weight: 700
-    color: black
+  &_type_active a,
+  &_type_active:hover a
+    background-color: variables.$hover
+    text-decoration: none
 
   &__link_level_second:hover,
   &__link_level_third:hover,
@@ -65,3 +66,23 @@
     &_state_open
       transform: rotate(180deg)
       transition: .2s
+
+  &__link_type_active
+    font-weight: 700
+    color: variables.$primary-color
+    text-decoration: none
+    letter-spacing: -.4px
+    -webkit-font-smoothing: antialiased
+
+  &_type_active,
+  &_type_active:hover
+    background-color: variables.$hover
+    text-decoration: none
+
+
+  &_state_up, &_state_out
+    opacity: 0
+    transition: opacity 0.4s ease-in-out
+
+  &_state_up
+    opacity: 1
