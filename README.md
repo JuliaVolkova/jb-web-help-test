@@ -14,13 +14,13 @@ Table of content without any UI component library.
 
 ## How to start
 
-Using Node (with webpack-dev-server config):
+Using Node (with webpack-dev-server and webpack.dev config):
 ```$xslt
 npm start
 # Wait while dev-server start
 # Check it http://localhost:8081/
 ```
-Using Docker (with webpack-dev-server config):
+Using Docker (with webpack-dev-server and webpack.dev config):
 ```$xslt
 docker-compose up -d
 # Wait while dev-server start
@@ -37,5 +37,5 @@ docker-compose -f docker-compose.prod.yml up -d --build
 
 ### IDE Settings
 
-- Languages & Frameworks -> Javascript -> Code Quality Tools -> Eslint -> Enable
-- Languages & Frameworks -> Style Sheets -> Stylelint -> Enable
+- Languages & Frameworks -> Javascript -> Code Quality Tools -> Eslint -> Apply
+- Languages & Frameworks -> Javascript -> Webpack -> Webpack configuration file: $(pwd)/webpack/webpack.dev.js
