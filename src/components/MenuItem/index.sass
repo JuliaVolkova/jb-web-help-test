@@ -6,7 +6,8 @@
   text-overflow: ellipsis
 
   &:hover,
-  &:focus
+  &:focus,
+  &:active
     background-color: variables.$hover
     outline: none
 
@@ -46,11 +47,14 @@
     font-size: variables.$primary-font-size
     text-decoration: none
     position: relative
+    outline: none
 
   &_type_active a,
-  &_type_active:hover a
-    background-color: variables.$hover
+  &_type_active:hover a,
+  &_type_active:focus a,
+  &_type_active:active a
     text-decoration: none
+    outline: none
 
   &__link_level_second:hover,
   &__link_level_third:hover,
@@ -69,6 +73,10 @@
       transform: rotate(180deg)
       transition: .2s
 
+    &_state_close
+      transform: rotate(180deg)
+      transition: .2s
+
   &__link_type_active
     font-weight: 700
     color: variables.$primary-color
@@ -77,10 +85,10 @@
     -webkit-font-smoothing: antialiased
 
   &_type_active,
-  &_type_active:hover
+  &_type_active:hover,
+  &_type_active:focus
     background-color: variables.$hover
     text-decoration: none
-
 
   &_state_up, &_state_out
     opacity: 0
