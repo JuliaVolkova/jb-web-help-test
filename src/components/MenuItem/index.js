@@ -31,7 +31,7 @@ const renderTree = (item, allPages, callback, open, active, inputString = '', ha
             })} onClick={(e) => callback(e, item.id)}>
             <a className={b('link', {
                 level: ITEM_LEVEL[item.level],
-                type: active === item.id && !hasChildren(item)
+                type: active === item.id
                     ? 'active' : 'normal'
             })}>
                 {item.pages && item.pages.length > 0
