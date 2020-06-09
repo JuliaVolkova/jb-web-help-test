@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import MenuItem from 'components/MenuItem';
 import Skeleton from 'components/Skeleton';
-import { prepareChildren } from 'utils/tree';
+import InputSearchContainer from 'containers/InputSearchContainer';
+
+import { prepareChildren, searchInTree } from 'utils/helpers';
 
 import bemcl from 'bem-cl';
 import './index.sass';
@@ -18,6 +20,12 @@ class TableOfContent extends Component {
         this.props.getData();
     }
 
+    handleKeyDown = (e, itemId) => {
+        if (e.keyCode === 13) {
+            this.onElementClick(e, itemId);
+        }
+    };
+
     onElementClick = (e, itemId) => {
         e.stopPropagation();
 
@@ -33,35 +41,42 @@ class TableOfContent extends Component {
         }
     };
 
-    onElementSelect = (e, itemId) => {
-        e.stopPropagation();
-        this.setState({ selected: itemId });
-    };
-
     renderContent = (topLevelContent, allPages) => {
-        // prepare to render tree
+        // turn structure to tree
         if (!this.props.isLoading) {
             return topLevelContent.map((item) => prepareChildren(item, allPages));
         }
     };
 
+    prepareContentWithFilter = (topLevelContent, allPages, filter) => {
+        if (!this.props.isLoading) {
+            return searchInTree(this.renderContent(topLevelContent, allPages), filter).map((item) => item.title);
+        }
+    };
+
     render() {
-        const { topLevelContent = [], allPages, isLoading } = this.props;
+        const { topLevelContent = [], allPages, isLoading, filter } = this.props;
         return (
             <nav className={b()}>
+                <InputSearchContainer/>
                 {isLoading
                     ? <Skeleton count={5}/>
                     : <ul>
-                        {topLevelContent.map((item) =>
-                            <MenuItem
-                                key={item.id}
-                                item={item}
-                                active={this.state.active}
-                                onElementSelect={this.onElementSelect}
-                                onElementClick={this.onElementClick}
-                                allPages={allPages}
-                                open={this.state.open}
-                            />)}
+                        {topLevelContent
+                            .filter((item) => this.prepareContentWithFilter(topLevelContent, allPages, filter)
+                                .includes(item.title))
+                            .map((item) =>
+                                <MenuItem
+                                    key={item.id}
+                                    item={item}
+                                    active={this.state.active}
+                                    onElementSelect={this.onElementSelect}
+                                    onElementClick={this.onElementClick}
+                                    allPages={allPages}
+                                    open={this.state.open}
+                                    inputString={filter}
+                                    handleKeyDown={this.handleKeyDown}
+                                />)}
                     </ul>}
             </nav>
         );
